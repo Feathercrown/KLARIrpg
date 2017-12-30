@@ -11,6 +11,7 @@ const
     Ytdl = require('ytdl-core');
 
 // Boot sequence
+// Everything below each console.log() should be pretty self-explanatory
 console.log('Grabbing config file...');
 var config = require('./config.json');
 
@@ -23,11 +24,16 @@ client.login(config.token);
 console.log('Waiting for client...');
 client.on('ready', ()=>{
 
+    // Main code for doing Discord stuff goes in this ready event
     console.log('Preparing event handlers...');
     client.on('message', message =>{
         if (message.author.id == config.userID) return;
-        message.channel.send(message.content);
+        // Message-driven OS goes in here
+
+        // This is just a test thing
+        console.log(`${message.author.username}: ${message.content}`);
     });
+    // Finish booting
     const bootEnd = Date.now();
     console.log(`Boot process complete in ${(bootEnd-bootStart)/1000} seconds. Ctrl-C to terminate.`)
 });
